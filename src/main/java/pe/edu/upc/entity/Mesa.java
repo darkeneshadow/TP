@@ -19,7 +19,8 @@ public class Mesa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMesa;
 	
-	private int capacidadMesa;
+	@Column(name="estado", nullable = false, length=30)
+	private String estado;
 
 	public Mesa() {
 		super();
@@ -33,12 +34,12 @@ public class Mesa implements Serializable {
 		this.idMesa = idMesa;
 	}
 
-	public int getCapacidadMesa() {
-		return capacidadMesa;
+	public String getestado() {
+		return estado;
 	}
 
-	public void setPrecio(int capacidadMesa) {
-		this.capacidadMesa = capacidadMesa;
-	} 
+	public void setestado(String estado) {
+		this.estado = estado;
+	}
 	
 }

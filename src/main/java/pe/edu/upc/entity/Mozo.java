@@ -11,35 +11,35 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Cliente")
-public class Cliente implements Serializable {
+@Table(name = "Mozo")
+public class Mozo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCliente;
+	private int idMozo;
 	
 	@OneToOne
 	@JoinColumn(name = "idUsuario", nullable = false)
 	private Usuario usuario;
 
-	public Cliente() {
+	public Mozo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(int idCliente, Usuario usuario) {
+	public Mozo(int idMozo, Usuario usuario) {
 		super();
-		this.idCliente = idCliente;
+		this.idMozo = idMozo;
 		this.usuario = usuario;
 	}
 
-	public int getIdCliente() {
-		return idCliente;
+	public int getIdMozo() {
+		return idMozo;
 	}
 
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+	public void setIdMozo(int idMozo) {
+		this.idMozo = idMozo;
 	}
 
 	public Usuario getUsuario() {

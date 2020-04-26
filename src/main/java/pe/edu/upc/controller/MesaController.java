@@ -19,13 +19,13 @@ public class MesaController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private IMesaService mService;
-	private Mesa Mesa;
+	private Mesa mesa;
 	List<Mesa> listaMesas;
 
 	@PostConstruct
 	public void init() {
 		this.listaMesas = new ArrayList<Mesa>();
-		this.Mesa = new Mesa();
+		this.mesa = new Mesa();
 		this.listar();
 	}
 	
@@ -37,7 +37,7 @@ public class MesaController implements Serializable {
 	public void insertar() {
 		try {
 
-			mService.insertar(Mesa);
+			mService.insertar(mesa);
 			limpiarMesa();
 
 			this.listar();
@@ -65,11 +65,11 @@ public class MesaController implements Serializable {
 	}
 	// get y set
 	public Mesa getMesa() {
-		return Mesa;
+		return mesa;
 	}
 
-	public void setMesa(Mesa Mesa) {
-		this.Mesa = Mesa;
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
 	}
 
 	public List<Mesa> getListaMesas() {

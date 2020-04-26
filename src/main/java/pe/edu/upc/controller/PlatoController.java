@@ -19,13 +19,13 @@ public class PlatoController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private IPlatoService pService;
-	private Plato Plato;
+	private Plato plato;
 	List<Plato> listaPlatos;
 
 	@PostConstruct
 	public void init() {
 		this.listaPlatos = new ArrayList<Plato>();
-		this.Plato = new Plato();
+		this.plato = new Plato();
 		this.listar();
 	}
 	
@@ -37,7 +37,7 @@ public class PlatoController implements Serializable {
 	public void insertar() {
 		try {
 
-			pService.insertar(Plato);
+			pService.insertar(plato);
 			limpiarPlato();
 
 			this.listar();
@@ -65,18 +65,18 @@ public class PlatoController implements Serializable {
 	}
 	// get y set
 	public Plato getPlato() {
-		return Plato;
+		return plato;
 	}
 
-	public void setPlato(Plato Plato) {
-		this.Plato = Plato;
+	public void setPlato(Plato plato) {
+		this.plato = plato;
 	}
 
 	public List<Plato> getListaPlatos() {
 		return listaPlatos;
 	}
 
-	public void setListaPlatos(List<Plato> listaPlatos) {
+	public void setListaMesas(List<Plato> listaPlatos) {
 		this.listaPlatos = listaPlatos;
 	}
 

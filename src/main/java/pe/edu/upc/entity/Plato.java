@@ -22,10 +22,11 @@ public class Plato implements Serializable {
 	@Column(name="nombrePlato", nullable = false, length=30)
 	private String nombrePlato;
 	
-	private int precioPlato;
+	private int preciobasePlato;
 
 	public Plato() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getIdPlato() {
@@ -44,12 +45,12 @@ public class Plato implements Serializable {
 		this.nombrePlato = nombrePlato;
 	}
 
-	public int getPrecioPlato() {
-		return precioPlato;
+	public int getPreciobasePlato() {
+		return preciobasePlato;
 	}
 
-	public void setPrecioPlato(int precioPlato) {
-		this.precioPlato = precioPlato;
-	} 
+	public void setPreciobasePlato(int preciobasePlato) {
+		this.preciobasePlato = preciobasePlato;
+	}
 	
 }
