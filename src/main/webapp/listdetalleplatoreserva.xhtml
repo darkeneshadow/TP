@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="master.xhtml">
+
+
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+
+				<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Guardar" icon="ui-icon-disk"
+						  action="#{Controller.saveDetallePlatoReserva()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Editar" icon="ui-icon-disk"
+						  action="#{Controller.editDetallePlatoReserva()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Eliminar" icon="ui-icon-disk"
+						  action="#{Controller.detallePlatoReserva()}"
+						  ajax="false"/>
+						  
+						  <p:commandButton value="Terminar" icon="ui-icon-disk"
+						  url="confirmacion.xhtml"
+						immediate="true"
+						  ajax="false"/>
+
+					</f:facet>
+				</p:toolbar>
+
+
+	<p:panelGrid id="panGriBuscador" columns="3" style="width:100%">
+					<p:outputLabel value="Buscar Por Nombre:" for="txtSearchName" />
+					<p:inputText id="txtSearchName"  value="#{Controller.filterName}" />
+					<p:commandButton icon="ui-icon-search" 
+					  actionListener="#{Controller.searchDetallePlatoReserva}"
+					  update=":frm:datDetallePlatoReserva :frm:men"/>
+				</p:panelGrid>
+
+
+				<p:dataTable id="datTabDetallePlatoReserva"
+					emptyMessage="No existe detalle registrado"
+					value="#{Controller.detalleplatoreserva}" var="detalleplatoreserva"
+					
+					rowKey="#{reserva.idReserva}"
+					selectionMode="single"
+					selection="#{Controller.detalleplatoreserva}"
+					
+					paginator="true" rows="10">
+					
+					
+					<p:ajax event="rowSelect"
+						listener="#{Controller.selectDetallePlatoReserva}" />
+					
+
+					<p:column headerText="Código reserva">
+						<p:outputLabel value="#{reserva.idReserva}" />
+					</p:column>
+					<p:column headerText="Código plato personalizado">
+						<p:outputLabel value="#{PlatoPersonalizado.idplatopersonalizado}" />
+					</p:column>
+					<p:column headerText="Precio">
+						<p:outputLabel value="#{PlatoPersonalizado.precioplato}" />
+					</p:column>
+					
+				</p:dataTable>
+
+				
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="master.xhtml">
+
+
+	<ui:define name="title">
+        Registrar detalle de reserva
+    </ui:define>
+
+
+	
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+
+				<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Guardar" icon="ui-icon-disk" 
+						action="#{Controller.saveReserva()}" ajax="false"/>
+
+						<p:commandButton value="Regresar" icon="ui-icon-disk"
+						  url="listingrediente.xhtml"
+						  immediate="true"
+						  ajax="false"/>
+						  
+						 <p:commandButton value="Siguiente" icon="ui-icon-disk"
+						  url="listdetalleplatoreserva.xhtml"
+						  immediate="true"
+						  ajax="false"/>
+					</f:facet>
+				</p:toolbar>
+
+
+				<p:panelGrid id="panGridPlatos" columns="2" style="width:100%">
+				
+				<p:outputLabel value="Número de sillas:" for="txtNumSilla" />
+					<p:inputText id="txtNumSilla" required="true" maxlength="2"
+						value="#{Controller.reserva.sillas}" />
+				
+				
+				<p:outputLabel value="Fecha de reserva:" for="txtFecha" />
+					<p:inputText id="txtFecha" required="true" maxlength="20"
+						value="#{Controller.reserva.FechaReserva}" />
+						
+						
+					<p:outputLabel value="Hora de reserva:" for="txtHora" />
+					<p:inputText id="txtHora" required="true" maxlength="45"
+						value="#{Controller.reserva.HoraReserva}" />
+						
+						<p:outputLabel value="Monto:" for="txtMonto" />
+					<p:inputText id="txtMonto" required="true" maxlength="10"
+						value="#{Controller.reserva.MontoTotal}" />
+						
+						
+					
+				</p:panelGrid>
+				<br></br>
+
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

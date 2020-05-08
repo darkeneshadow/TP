@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="master.xhtml">
+
+
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+
+				<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Nuevo" icon="ui-icon-disk"
+						  action="#{Controller.newCliente()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Editar" icon="ui-icon-disk"
+						  action="#{Controller.editCliente()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Eliminar" icon="ui-icon-disk"
+						  action="#{Controller.deleteCliente()}"
+						  ajax="false"/>
+
+					</f:facet>
+				</p:toolbar>
+
+
+				<p:panelGrid id="panGriBuscador" columns="2" style="width:100%">
+					<p:outputLabel value="Buscar Por Nombre:" for="txtSearchName" />
+					<p:inputText id="txtSearchName"  value="#{Controller.filterName}" />
+					<p:commandButton icon="ui-icon-search" 
+					  actionListener="#{Controller.searchClienteByName}"
+					  update=":frm:datTabUsuarios :frm:men"/>
+				</p:panelGrid>
+
+				<p:dataTable id="datTabClientes"
+					emptyMessage="No existen clientes registrados"
+					value="#{Controller.clientes}" var="cliente"
+					
+					rowKey="#{cliente.idCliente}"
+					selectionMode="single"
+					selection="#{Controller.selectCliente}"
+					
+					paginator="true" rows="10">
+					
+					
+					<p:ajax event="rowSelect"
+						listener="#{Controller.selectCliente}" />
+					
+
+					<p:column headerText="Id cliente">
+						<p:outputLabel value="#{Cliente.idCliente}" />
+					</p:column>
+					
+					<p:column headerText="Id usuario">
+						<p:outputLabel value="#{usuario.idUsuario}" />
+					</p:column>
+					<p:column headerText="Nombres">
+						<p:outputLabel value="#{usuario.nombres}" />
+					</p:column>
+					<p:column headerText="Apellidos">
+						<p:outputLabel value="#{usuario.apellidos}" />
+					</p:column>
+					<p:column headerText="Telefono">
+						<p:outputLabel value="#{usuario.telefono}" />
+					</p:column>
+					<p:column headerText="Email">
+						<p:outputLabel value="#{usuario.email}" />
+					</p:column>
+					
+				</p:dataTable>
+
+				
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</html>

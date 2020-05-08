@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="master.xhtml">
+
+<ui:define name="title">
+        Registrar platillo
+    </ui:define>
+
+
+	
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+
+				<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Registrar" icon="ui-icon-disk" 
+						action="#{Controller.newPlato()}" ajax="false"/>
+
+						<p:commandButton value="Regresar" icon="ui-icon-disk"
+						  action="#{Controller.listPlato()}"
+						  immediate="true"
+						  ajax="false"/>
+					</f:facet>
+				</p:toolbar>
+
+
+				<p:panelGrid id="panGridPlatos" columns="3" style="width:100%">
+				
+				<p:outputLabel value="Código:" for="txtCodigo" />
+					<p:inputText id="txtCodigo" required="true" maxlength="10"
+						value="#{Controller.plato.idplato}" />
+						
+						
+					<p:outputLabel value="Nombre:" for="txtName" />
+					<p:inputText id="txtName" required="true" maxlength="45"
+						value="#{Controller.plato.nombreplato}" />
+						
+						<p:outputLabel value="Precio:" for="txtPrecio" />
+					<p:inputText id="txtPrecio" required="true" maxlength="5"
+						value="#{Controller.plato.preciobaseplato}" />
+						
+						
+					
+				</p:panelGrid>
+				<br></br>
+
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>
