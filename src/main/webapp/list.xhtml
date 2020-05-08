@@ -18,11 +18,11 @@
 						
 						
 						 <p:commandButton value="Editar" icon="ui-icon-disk"
-						  action="#{Controller.editReserva()}"
+						  action="#{ReservaController.editReserva()}"
 						  ajax="false"/>
 						
 						 <p:commandButton value="Eliminar" icon="ui-icon-disk"
-						  action="#{Controller.deleteReserva()}"
+						  action="#{ReservaController.deleteReserva()}"
 						  ajax="false"/>
 
 					</f:facet>
@@ -31,25 +31,25 @@
 
 				<p:panelGrid id="panGriBuscador" columns="2" style="width:100%">
 					<p:outputLabel value="Buscar Por Nombre:" for="txtSearchName" />
-					<p:inputText id="txtSearchName"  value="#{Controller.filterName}" />
+					<p:inputText id="txtSearchName"  value="#{ReservaController.filterName}" />
 					<p:commandButton icon="ui-icon-search" 
-					  actionListener="#Controller.searchReservaByName}"
+					  actionListener="#ReservaController.searchReservaByName}"
 					  update=":frm:datTabReserva :frm:men"/>
 				</p:panelGrid>
 
 				<p:dataTable id="datTabReserva"
 					emptyMessage="No existen reservas registrados"
-					value="#{Controller.reservas}" var="reserva"
+					value="#{ReservaController.reservas}" var="reserva"
 					
 					rowKey="#{reserva.id}"
 					selectionMode="single"
-					selection="#{Controller.reservaSelect}"
+					selection="#{ReservaController.reservaSelect}"
 					
 					paginator="true" rows="10">
 					
 					
 					<p:ajax event="rowSelect"
-						listener="#{Controller.selectReserva}" />
+						listener="#{ReservaController.selectReserva}" />
 					
 
 					<p:column headerText="Id">
