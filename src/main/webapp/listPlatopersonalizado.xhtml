@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="master.xhtml">
+
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+
+				<p:toolbar>
+					<f:facet name="right">
+	
+						<p:commandButton value="Guardar" icon="ui-icon-disk"
+						  action="#{PlatoPersonalizadoController.savePatoPersonalizado()}"
+						  ajax="false"/>
+	
+						 <p:commandButton value="Editar" icon="ui-icon-disk"
+						  action="#{PlatoPersonalizadoController.editPlatoPersonalizado()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Eliminar" icon="ui-icon-disk"
+						  action="#{PlatoPersonalizadoController.deletePlatoPersonalizado()}"
+						  ajax="false"/>
+						  
+						    <p:commandButton value="Confirmar" icon="ui-icon-disk"
+						  url="insertReserva.xhtml"
+						immediate="true"
+						  ajax="false"/>
+
+					</f:facet>
+				</p:toolbar>
+
+
+				<p:dataTable id="datTabPlatoPersonalizados"
+					emptyMessage="No existen platos registrados"
+					value="#{PlatoController.platos}" var="plato"
+					
+					rowKey="#{plato.idplato}"
+					selectionMode="single"
+					selection="#{PlatoController.platoselect}"
+					
+					paginator="true" rows="10">
+					
+					
+					<p:ajax event="rowSelect"
+						listener="#{PlatoController.selectPlato}" />
+					
+
+					<p:column headerText="Id">
+						<p:outputLabel value="#{plato.idplato}" />
+					</p:column>
+					<p:column headerText="Plato">
+						<p:outputLabel value="#{plato.nombreplato}" />
+					</p:column>
+					<p:column headerText="Precio">
+						<p:outputLabel value="#{plato.preciobaseplato}" />
+					</p:column>
+					
+				</p:dataTable>
+
+				
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</html>
