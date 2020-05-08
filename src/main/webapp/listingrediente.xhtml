@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="master.xhtml">
+
+
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+
+				<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Guardar" icon="ui-icon-disk"
+						  action="#{Controller.saveIngrediente()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Editar" icon="ui-icon-disk"
+						  action="#{Controller.editIngrediente()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Eliminar" icon="ui-icon-disk"
+						  action="#{Controller.deleteIngrediente()}"
+						  ajax="false"/>
+						  
+						   <p:commandButton value="Siguiente" icon="ui-icon-disk"
+						  url="listPlatoPersonalizado.xhtml"
+						immediate="true"
+						  ajax="false"/>
+
+					</f:facet>
+				</p:toolbar>
+
+
+
+				<p:dataTable id="datTabIngredientes"
+					emptyMessage="No existen ingredientes registrados"
+					value="#{Controller.ingredientes}" var="ingrediente"
+					
+					rowKey="#{plato.idpingrediente}"
+					selectionMode="single"
+					selection="#{Controller.selectIngrediente}"
+					
+					paginator="true" rows="10">
+					
+					
+					<p:ajax event="rowSelect"
+						listener="#{Controller.selectIngrediente}" />
+					
+
+					<p:column headerText="Código">
+						<p:outputLabel value="#{ingrediente.idingrediente}" />
+					</p:column>
+					<p:column headerText="Ingrediente">
+						<p:outputLabel value="#{ingrediente.nombreingrediente}" />
+					</p:column>
+					<p:column headerText="Precio">
+						<p:outputLabel value="#{ingrediente.precioingrediente}" />
+					</p:column>
+					
+				</p:dataTable>
+
+				
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</html>
