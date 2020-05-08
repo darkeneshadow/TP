@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="master.xhtml">
+
+
+		<ui:define name="content">
+			<h:form id="frm">
+				<p:growl id="men" />
+
+				<p:toolbar>
+					<f:facet name="right">
+						<p:commandButton value="Guardar" icon="ui-icon-disk"
+						  action="#{MesaController.saveMesa()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Editar" icon="ui-icon-disk"
+						  action="#{MesaController.editMesa()}"
+						  ajax="false"/>
+						
+						 <p:commandButton value="Eliminar" icon="ui-icon-disk"
+						  action="#{MesaController.deleteMesa()}"
+						  ajax="false"/>
+
+					</f:facet>
+				</p:toolbar>
+
+
+				<p:panelGrid id="panGriBuscador" columns="2" style="width:100%">
+					<p:outputLabel value="Buscar Por Nombre:" for="txtSearchName" />
+					<p:inputText id="txtSearchName"  value="#{MesaController.filterName}" />
+					<p:commandButton icon="ui-icon-search" 
+					  actionListener="#{MesaController.searchMesaByName}"
+					  update=":frm:datTabMesas :frm:men"/>
+				</p:panelGrid>
+
+				<p:dataTable id="datTabMesas"
+					emptyMessage="No existen mesas registradas"
+					value="#{MesaController.mesas}" var="mesa"
+					
+					rowKey="#{mesa.idMesa}"
+					selectionMode="single"
+					selection="#{MesaController.selectMesa}"
+					
+					paginator="true" rows="10">
+					
+					
+					<p:ajax event="rowSelect"
+						listener="#{MesaController.selectMesa}" />
+					
+
+					<p:column headerText="idMesa">
+						<p:outputLabel value="#{mesa.idMesa}" />
+					</p:column>
+					<p:column headerText="Estado">
+						<p:outputLabel value="#{mesa.estado}" />
+					</p:column>
+					<p:column headerText="Zona">
+						<p:outputLabel value="#{mesa.zona}" />
+					</p:column>
+					
+				</p:dataTable>
+
+				
+
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</html>
