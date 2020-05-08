@@ -31,7 +31,7 @@
 
 				<p:panelGrid id="panGriBuscador" columns="2" style="width:100%">
 					<p:outputLabel value="Buscar Por Nombre:" for="txtSearchName" />
-					<p:inputText id="txtSearchName"  value="#{productController.filterName}" />
+					<p:inputText id="txtSearchName"  value="#{Controller.filterName}" />
 					<p:commandButton icon="ui-icon-search" 
 					  actionListener="#Controller.searchReservaByName}"
 					  update=":frm:datTabReserva :frm:men"/>
